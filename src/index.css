@@ -18,7 +18,7 @@ code {
     monospace;
 }
 
-.start {
+.container {
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -46,7 +46,15 @@ code {
   border-radius: 0.5em;
   background-color: blue;
   justify-content: center;
-  
+
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.navButtons:hover {
+  opacity: 50%;
 }
 
 .buttonText {
@@ -55,3 +63,4 @@ code {
   font-weight: bold;
   font-size: 18;
 }
+
