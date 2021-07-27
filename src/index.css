@@ -1,6 +1,11 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -18,19 +23,17 @@ code {
     monospace;
 }
 
-.container {
+/* .container {
   justify-content: center;
   align-items: center;
   flex: 1;
-}
+} */
 
 .startTitle {
-  flex: 1;
   padding-top: 1em;
   font-size: 24;
   text-align: center;
-  font-weight: bold;
-  
+  font-weight: bold; 
 }
 
 .nav {
@@ -45,7 +48,7 @@ code {
   margin-top: 1em;
   border-radius: 0.5em;
   background-color: blue;
-  justify-content: center;
+  /* justify-content: center; */
 
 }
 
@@ -64,3 +67,53 @@ code {
   font-size: 18;
 }
 
+/* ----------ratings page------------ */
+.ratingContainer {
+  text-align: center;
+  
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  justify-content: center;
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  border: 10px solid var(black);
+  background-color: #e4e2e2;
+  color: var(--gray-800);
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-top: 1em;
+}
+
+.error {
+  color: red;
+  font-size: small;
+  margin-top: 0em;
+  margin-bottom: -1em;
+}
+
+.units {
+  margin-top: 1em;
+  margin-left: -1em;
+}
+
+.calculate {
+  border-radius: 1em;
+  background-color: blue;
+  margin-top: 1.5em;
+  height: 3em;
+  width: 15em;
+  border: blue;
+}
+
+.calculate:hover {
+  opacity: 50%;
+}
