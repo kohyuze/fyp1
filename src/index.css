@@ -75,34 +75,38 @@ code {
 
 .form {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  margin-left: calc(50% - 7em);
 }
 
 .input {
-  justify-content: center;
+  /* justify-content: left; */
   padding: 0.65rem 0.5rem;
   font-size: 1rem;
   border: 10px solid var(black);
   background-color: #e4e2e2;
-  color: var(--gray-800);
   border-radius: 10px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  margin-top: 0.3em;
+}
+
+.categoryHeader {
   margin-top: 1em;
 }
 
 .error {
   color: red;
   font-size: small;
-  margin-top: 0em;
-  margin-bottom: -1em;
+  margin-top: 1em;
+  margin-left: 1em;
 }
 
 .units {
   margin-top: 1em;
-  margin-left: -1em;
+  margin-left: 0em;
 }
 
 .calculate {

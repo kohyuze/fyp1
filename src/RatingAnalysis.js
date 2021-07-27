@@ -1,87 +1,64 @@
-import React, { useState, Component } from 'react';
-import { Formik, Form, useField } from 'formik';
-import * as Yup from 'yup';
+import React from 'react';
+import RatingForm from './RatingForm';
 
 
-const MyTextInput = ({ label, ...props }) => {
-  // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-  // which we can spread on <input>. We can use field meta to show an error
-  // message if the field is invalid and it has been touched (i.e. visited)
-  const [field, meta] = useField(props);
-  return (
-    <>
-      {/* <label htmlFor={props.id || props.name}>{label}</label> */}
-      <div className="form">
-        <input className="input" {...field} {...props} />
-        <p className="units">{props.unit}</p>
-      </div>
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-class RatingAnalysis extends React.Component {
+class Rating_Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.handleFormData = this.handleFormData.bind(this); //this line here is rly needed
+    this.state = { formData : {
+      // constants for shell
       ShellIT: 0,
       ShellOT: 0,
       ShellMFR: 0,
-    };
+      ShellSHC: 0,
+      ShellDV: 0,
+      ShellTC: 0,
+      ShellD: 0,
+      ShellFF: 0,
+      // Constant for tube
+      TubeIT: 0,
+      TubeOT: 0,
+      TubeMFR: 0,
+      TubeSHC: 0,
+      TubeDV: 0,
+      TubeTC: 0,
+      TubeD: 0,
+      TubeFF: 0,
+      // Constant for Constraints and physical Dimensions
+      InnerD: 0,
+      OuterD: 0,
+      TubePitch: 0,
+      NumberTube: 0,
+      NumberPasses: 0,
+      LayoutAngle: 0,
+      ShellInnerDiameter: 0,
+      BaffleCut: 0,
+      CentralBaffleSpacing: 0,
+      Clearance: 0,
+      ShellSideFluidDynamicViscocity: 0,
+      TubeMaterialThermalConductivity: 0,
+      // Constant for material design
+      TubeUnsupportedLength: 0,
+      TubeYoungModule: 0,
+      TubeLongitudeStress: 0,
+      AddedMassCoefficient: 0,
+      MetalMassUnitLength: 0,
+    }};
   }
+
+  handleFormData(value){
+    this.setState({formData: value});
+  }
+  
 
   render() {
     return (
       <div className='ratingContainer'>
-        <h1 className='pageHeader'>Rating Analysis</h1>
-        <h2 className='categoryHeader'>Shell Side Fluid</h2>
-        {/* this form is done using formik */}
-        <Formik
-          initialValues={{ ShellIT: '', ShellOT: '', ShellMFR: '' }}
-          validationSchema={Yup.object({
-            ShellIT: Yup.number().required('Required'),
-            ShellOT: Yup.number().required('Required'),
-            ShellMFR: Yup.number().required('Required'),
-          })}
-          onSubmit={(values, { setSubmitting }) => {
-            this.setState(values);
-            setSubmitting(false);
-          }}
-        >
-          <Form>
-            <MyTextInput
-              label="Inlet Temperature" //text infront of box
-              name="ShellIT" //name inside the JSON object
-              type="text"
-              placeholder="Inlet Temperature" //placeholder text inside box
-              unit="C"
-            />
-
-            <MyTextInput
-              label="Outlet Temperature"
-              name="ShellOT"
-              type="text"
-              placeholder="Outlet Temperature"
-              unit="C"
-            />
-
-            <MyTextInput
-              label="Mass Flow Rate"
-              name="ShellMFR"
-              type="text"
-              placeholder="Mass Flow Rate"
-              unit="C"
-            />
-
-            <button className='calculate' type="submit">Calculate</button>
-            {/* button is not done, dk what to do with it yet */}
-          </Form>
-        </Formik>
-
+        < RatingForm formData={this.state} onFormChange={this.handleFormData}/>
         <button onClick={() => console.log(this.state)}>log state</button>
       </div>
     );
   }
 }
-export default RatingAnalysis;
+export default Rating_Form;
