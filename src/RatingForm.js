@@ -26,10 +26,10 @@ class RatingForm extends React.Component {
     constructor(props) {
         super(props);
         //this.handleChange = this.handleChange.bind(this);
-        this.state = { formData: {} };
+        this.state = { formData: {} }; //not sure whether this is used
     }
     render() {
-        const formData = this.props.formData;
+        const formData = this.props.formData; //not sure if this is used
         return (
             <div className='ratingContainer' >
                 <h1 className='pageHeader'>Rating Analysis</h1>
@@ -75,7 +75,7 @@ class RatingForm extends React.Component {
                         })
                     }
                     onSubmit={(values, { setSubmitting }) => {
-                        this.props.onFormChange(values);
+                        this.props.handleSubmit(values);
                         setSubmitting(false);
                     }}
                 >
