@@ -13,44 +13,44 @@ class Rating_Form extends React.Component {
     this.state = {
       formData: {
         // constants for shell
-        ShellIT: 0,
-        ShellOT: 0,
-        ShellMFR: 0,
-        ShellSHC: 0,
-        ShellDV: 0,
-        ShellTC: 0,
-        ShellD: 0,
-        ShellFF: 0,
+        shellIT: 0,
+        shellOT: 0,
+        shellMFR: 0,
+        shellSHC: 0,
+        shellDV: 0,
+        shellTC: 0,
+        shellD: 0,
+        shellFF: 0,
         //ShellPN: 0, //not filled in form
         // Constant for tube
-        TubeIT: 0,
-        TubeOT: 0,
-        TubeMFR: 0,
-        TubeSHC: 0,
-        TubeDV: 0,
-        TubeTC: 0,
-        TubeD: 0,
-        TubeFF: 0,
+        tubeIT: 0,
+        tubeOT: 0,
+        tubeMFR: 0,
+        tubeSHC: 0,
+        tubeDV: 0,
+        tubeTC: 0,
+        tubeD: 0,
+        tubeFF: 0,
         //TubePN: 0, //not filled in form
         // Constant for Constraints and physical Dimensions
-        InnerD: 0,
-        OuterD: 0,
-        TubePitch: 0,
-        NumberTube: 0,
-        NumberPasses: 0,
-        LayoutAngle: 0,
-        ShellInnerDiameter: 0,
-        BaffleCut: 0,
-        CentralBaffleSpacing: 0,
-        Clearance: 0,
-        ShellSideFluidDynamicViscocity: 0,
-        TubeMaterialThermalConductivity: 0,
+        tubeInnerD: 0,
+        tubeOuterD: 0,
+        tubePitch: 0,
+        numberTube: 0,
+        numberPasses: 0,
+        layoutAngle: 0,
+        shellInnerDiameter: 0,
+        baffleCut: 0,
+        centralBaffleSpacing: 0,
+        clearance: 0,
+        shellSideFluidDynamicViscocity: 0,
+        tubeMaterialThermalConductivity: 0,
         // Constant for material design
-        TubeUnsupportedLength: 0,
-        TubeYoungModule: 0,
-        TubeLongitudeStress: 0,
-        AddedMassCoefficient: 0,
-        MetalMassUnitLength: 0,
+        tubeUnsupportedLength: 0,
+        tubeYoungModule: 0,
+        tubeLongitudeStress: 0,
+        addedMassCoefficient: 0,
+        metalMassUnitLength: 0,
       },
       isSubmitted: false
     };
@@ -59,6 +59,9 @@ class Rating_Form extends React.Component {
   //to be passed into RatingForm component, 
   //to extract data from the form into the state here
   handleSubmit(value) {
+    for(var property in value){
+      value[property] = parseFloat(value[property]) //this loop converts all the data input into float so we can do arithmetic
+    }
     this.setState({ formData: value });
     this.setState({ isSubmitted: true })
     //upon submission, this will toggle and the ternary operator in render() will display
@@ -72,7 +75,7 @@ class Rating_Form extends React.Component {
   render() {
     return (
       <div className='ratingContainer'>
-        {this.state.isSubmitted ? < RatingResult formData={this.state} handleNewCalc={this.handleNewCalc}/>
+        {this.state.isSubmitted ? < RatingResult formData={this.state.formData} handleNewCalc={this.handleNewCalc}/>
         :
         < RatingForm formData={this.state} handleSubmit={this.handleSubmit} />
         }               
