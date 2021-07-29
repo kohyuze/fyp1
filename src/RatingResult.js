@@ -17,18 +17,18 @@ class RatingResult extends React.Component {
                 equivalentDiameter: 0,
                 reynoldsNumberShellSide: 0,
                 nusseltnumbershellside: 0,
-                ShellSideFilmHeat: 0,
+                shellSideFilmHeat: 0,
                 logMeanTemDif: 0,
                 tubeMetalSecAreaAllTube: 0,
                 tubeSideFuildV: 0,
-                tubeSideRn: 0,
+                tubeSideRN: 0,
                 tubeSideNN: 0,
                 shellsideFHC: 0,
                 tubesidePressureDrop: 0,
                 overallHeatTCCHE: 0,
                 heatdutyHE: 0,
                 cleanHeatTransferSA: 0,
-                LengthCleanHE: 0,
+                lengthCleanHE: 0,
                 pressurDICFS: 0,
                 pressurAW: 0,
                 pressurEF: 0,
@@ -44,7 +44,7 @@ class RatingResult extends React.Component {
                 overallHTCFHE: 0,
                 fooledHTSA: 0,
                 oversurfaceDesign: 0,
-                LengthFooledHE: 0,
+                lengthFouledHE: 0,
                 tubeSIdeFPD: 0,
                 cleanlinessFactor: 0,
             }
@@ -64,7 +64,7 @@ class RatingResult extends React.Component {
             shellTC,
             shellD,
             shellFF,
-            //ShellPN, //not filled in form
+            //shellPN, //not filled in form
             // Constant for tube
             tubeIT,
             tubeOT,
@@ -74,7 +74,7 @@ class RatingResult extends React.Component {
             tubeTC,
             tubeD,
             tubeFF,
-            TubePN, //not filled in form
+            //tubePN, //not filled in form
             // Constant for Constraints and physical Dimensions
             tubeInnerD,
             tubeOuterD,
@@ -103,8 +103,8 @@ class RatingResult extends React.Component {
         }
 
 
-        const shellPN = 5.43
-        const tubePN = 6.55
+        o.shellPN = 5.43
+        o.tubePN = 6.55
 
         const nt = shellInnerDiameter / tubePitch
         //shell side cross sectional area
@@ -208,7 +208,7 @@ class RatingResult extends React.Component {
         // )
         const a = a3 / (1 - (0.14) * Math.pow(res, a4));
         // nusselt number for shell side fluid
-        const nus = 0.36 * (Math.pow(res, 0.55)) * (Math.pow(shellPN, 0.33)) * (Math.pow((shellDV / uw), 0.14));
+        const nus = 0.36 * (Math.pow(res, 0.55)) * (Math.pow(o.shellPN, 0.33)) * (Math.pow((shellDV / uw), 0.14));
         o.nusseltnumbershellside = nus.toFixed(6);
         const ji = a1 * Math.pow(1.33 / (tubePitch / tubeOuterD), a) * Math.pow(res, a2);
         const hs = ji * shellSHC * gs * Math.pow(shellTC / (shellSHC * shellDV), 2 / 3) * Math.pow(shellDV / shellSideFluidDynamicViscocity, 0.14);
@@ -233,7 +233,7 @@ class RatingResult extends React.Component {
         const Ret = (tubeD * Ut * tubeInnerD) / tubeDV
         o.tubeSideRN = Ret.toFixed(6)
         const ft = Math.pow(1.58 * Math.log(Ret) - 3.28, -2)
-        const Nut = ((ft / 2) * Ret * tubePN) / (1.07 + (12.7 * Math.pow((ft / 2), 1 / 2)) * (Math.pow(tubePN, 2 / 3) - 1))
+        const Nut = ((ft / 2) * Ret * o.tubePN) / (1.07 + (12.7 * Math.pow((ft / 2), 1 / 2)) * (Math.pow(o.tubePN, 2 / 3) - 1))
         o.tubeSideNN = Nut.toFixed(6)
         const hi = Nut * (tubeTC / tubeInnerD)
         o.shellsideFHC = hi.toFixed(4)
@@ -335,7 +335,7 @@ class RatingResult extends React.Component {
         const OS = Uc / Uf
         o.oversurfaceDesign = OS.toFixed(6)
         const Lf = Af / (numberTube * Math.PI * tubeOuterD)
-        o.lengthFooledHE = Lf.toFixed(6)
+        o.lengthFouledHE = Lf.toFixed(6)
         const deltaPtf = ((4 * ft * (Lf / tubeInnerD)) + (4 * numberPasses)) * (tubeD * Math.pow(Ut, 2) / 2)
         o.tubeSIdeFPD = deltaPtf.toFixed(6)
         const CF = Uf / Uc
@@ -353,55 +353,56 @@ class RatingResult extends React.Component {
             <div>
                 <h1>Results muthafaka</h1>
 
-                <div>
+                <div className='results-Container'>
                     <h2>Shell-side Thermal Analysis</h2>
-                    <p>Shell-side cross sectional area: {this.state.calcResult.shellSideSecArea}m²</p>
-                    <p>Mass velocity of shell side: {this.state.calcResult.shellSideMaseV}kg/m².s</p>
-                    <p>Equivalent diameter: {this.state.calcResult.equivalentDiameter}m</p>
-                    <p>Reynolds number for shell-side fluid: {this.state.calcResult.reynoldsNumberShellSide}</p>
-                    <p>Prandtl number for shell-side fluid: {this.state.calcResult.shellPN}</p>
-                    <p>Nusselt Number for shell-side fluid: {this.state.calcResult.nusseltnumbershellside}</p>
-                    <p>Shell-side heat transfer coefficient (Bell-Delware): {this.state.calcResult.ShellSideFilmHeat}W/m².K</p>
+                    {/* I use h5 tags to style the numbers differently */}
+                    <div><p>Shell-side cross sectional area:</p> <h5>{this.state.calcResult.shellSideSecArea}m²</h5></div>
+                    <div><p>Mass velocity of shell side:</p> <h5>{this.state.calcResult.shellSideMaseV}kg/m².s</h5></div>
+                    <div><p>Equivalent diameter:</p> <h5>{this.state.calcResult.equivalentDiameter}m</h5></div>
+                    <div><p>Reynolds number for shell-side fluid:</p> <h5>{this.state.calcResult.reynoldsNumberShellSide}</h5></div>
+                    <div><p>Prandtl number for shell-side fluid:</p> <h5>{this.state.calcResult.shellPN}</h5></div>
+                    <div><p>Nusselt Number for shell-side fluid:</p> <h5>{this.state.calcResult.nusseltnumbershellside}</h5></div>
+                    <div><p>Shell-side heat transfer coefficient (Bell-Delware):</p> <h5>{this.state.calcResult.shellSideFilmHeat}W/m².K</h5></div>
                     <h2>Tube-side Thermal Analysis</h2>
-                    <p>Log-mean temperature difference, LMTD: {this.state.calcResult.logMeanTemDif}°C</p>
-                    <p>Total cross-sectional area for all tubes: {this.state.calcResult.tubeMetalSecAreaAllTube}m²</p>
-                    <p>Tube-side fluid's velocity: {this.state.calcResult.tubeSideFuildV}m/s</p>
-                    <p>Reynolds number for tube-side fluid: {this.state.calcResult.tubeSideRn}</p>
-                    <p>Prandtl number for tube-side fluid: {this.state.calcResult.tubePN}</p>
-                    <p>Nusselt number for tube-side fluid: {this.state.calcResult.tubeSideNN}</p>
-                    <p>Tube-side heat transfer coefficient (Kern): {this.state.calcResult.shellsideFHC}W/m².K</p>
+                    <div><p>Log-mean temperature difference, LMTD:</p> <h5>{this.state.calcResult.logMeanTemDif}°C</h5></div>
+                    <div><p>Total cross-sectional area for all tubes:</p> <h5>{this.state.calcResult.tubeMetalSecAreaAllTube}m²</h5></div>
+                    <div><p>Tube-side fluid's velocity:</p> <h5>{this.state.calcResult.tubeSideFuildV}m/s</h5></div>
+                    <div><p>Reynolds number for tube-side fluid:</p> <h5>{this.state.calcResult.tubeSideRN}</h5></div>
+                    <div><p>Prandtl number for tube-side fluid:</p> <h5>{this.state.calcResult.tubePN}</h5></div>
+                    <div><p>Nusselt number for tube-side fluid:</p> <h5>{this.state.calcResult.tubeSideNN}</h5></div>
+                    <div><p>Tube-side heat transfer coefficient (Kern):</p> <h5>{this.state.calcResult.shellsideFHC}W/m².K</h5></div>
                     <h2>Tube Side Pressure Drop</h2>
-                    <p>Overall heat transfer coefficient for heat exchanger (clean): {this.state.calcResult.overallHeatTCCHE}W/m².K</p>
-                    <p>Heat duty of heat exchanger: {this.state.calcResult.heatdutyHE}W</p>
-                    <p>Heat transfer surface area (clean): {this.state.calcResult.cleanHeatTransferSA}m²</p>
-                    <p>Length of heat exchanger (clean): {this.state.calcResult.LengthCleanHE}m</p>
-                    <p>Tube-side pressure drop: {this.state.calcResult.tubesidePressureDrop}Pa</p>
+                    <div><p>Overall heat transfer coefficient for heat exchanger (clean):</p> <h5>{this.state.calcResult.overallHeatTCCHE}W/m².K</h5></div>
+                    <div><p>Heat duty of heat exchanger:</p> <h5>{this.state.calcResult.heatdutyHE}W</h5></div>
+                    <div><p>Heat transfer surface area (clean):</p> <h5>{this.state.calcResult.cleanHeatTransferSA}m²</h5></div>
+                    <div><p>Length of heat exchanger (clean):</p> <h5>{this.state.calcResult.lengthCleanHE}m</h5></div>
+                    <div><p>Tube-side pressure drop:</p> <h5>{this.state.calcResult.tubesidePressureDrop}Pa</h5></div>
                     <h2>Shell Side Pressure Drop</h2>
-                    <p>Pressure drop in the interior cross flow section, ∆Pc: {this.state.calcResult.pressurDICFS}Pa</p>
-                    <p>Pressure drop in all windows, ∆Pw: {this.state.calcResult.pressurAW}Pa</p>
-                    <p>Pressure drop due to entrance and exit flows, ∆Pe: {this.state.calcResult.pressurEF}Pa</p>
-                    <p>Shell-side total pressure drop, ∆Ps: {this.state.calcResult.shellSideTPD}Pa</p>
+                    <div><p>Pressure drop in the interior cross flow section, ∆Pc:</p> <h5>{this.state.calcResult.pressurDICFS}Pa</h5></div>
+                    <div><p>Pressure drop in all windows, ∆Pw:</p> <h5>{this.state.calcResult.pressurAW}Pa</h5></div>
+                    <div><p>Pressure drop due to entrance and exit flows, ∆Pe:</p> <h5>{this.state.calcResult.pressurEF}Pa</h5></div>
+                    <div><p>Shell-side total pressure drop, ∆Ps:</p> <h5>{this.state.calcResult.shellSideTPD}Pa</h5></div>
                     <h2>Flow-Induced Vibration Check</h2>
-                    <p>Crippling load: {this.state.calcResult.criplingLoad}N</p>
-                    <p>Tube metal cross-sectional area: {this.state.calcResult.tubeMetalCrossSectionalArea}m²</p>
-                    <p>Tube axial stress multiplier: {this.state.calcResult.tubeAxialStressMultipllier}</p>
-                    <p>Tube fluid mass per unit length: {this.state.calcResult.tubeFluidMPUL}kg/m</p>
-                    <p>Tube fluid mass displaced per unit length: {this.state.calcResult.tubeFluidMDPUL}kg/m</p>
-                    <p>Hydrodynamic mass per unit length: {this.state.calcResult.hydrodynamicMPUL}kg/m</p>
-                    <p>Effective tube mass per unit length: {this.state.calcResult.effectiveTubeMPUL}kg/m</p>
-                    <p>Tube natural frequency: {this.state.calcResult.tubeNaturalFrequency}Hz</p>
-                    <p>Damping constant: {this.state.calcResult.dampingConstant}</p>
-                    <p>Fluid elastic parameter: {this.state.calcResult.fluidElasticParameter}</p>
-                    <p>Critical flow velocity factor: {this.state.calcResult.criticalFlowVelocityFactor}</p>
-                    <p>Critical flow velocity: {this.state.calcResult.criticalFlowvelocity}m/s</p>
+                    <div><p>Crippling load:</p> <h5>{this.state.calcResult.criplingLoad}N</h5></div>
+                    <div><p>Tube metal cross-sectional area:</p> <h5>{this.state.calcResult.tubeMetalCrossSectionalArea}m²</h5></div>
+                    <div><p>Tube axial stress multiplier:</p> <h5>{this.state.calcResult.tubeAxialStressMultipllier}</h5></div>
+                    <div><p>Tube fluid mass per unit length:</p> <h5>{this.state.calcResult.tubeFluidMPUL}kg/m</h5></div>
+                    <div><p>Tube fluid mass displaced per unit length:</p> <h5>{this.state.calcResult.tubeFluidMDPUL}kg/m</h5></div>
+                    <div><p>Hydrodynamic mass per unit length:</p> <h5>{this.state.calcResult.hydrodynamicMPUL}kg/m</h5></div>
+                    <div><p>Effective tube mass per unit length:</p> <h5>{this.state.calcResult.effectiveTubeMPUL}kg/m</h5></div>
+                    <div><p>Tube natural frequency:</p> <h5>{this.state.calcResult.tubeNaturalFrequency}Hz</h5></div>
+                    <div><p>Damping constant:</p> <h5>{this.state.calcResult.dampingConstant}</h5></div>
+                    <div><p>Fluid elastic parameter:</p> <h5>{this.state.calcResult.fluidElasticParameter}</h5></div>
+                    <div><p>Critical flow velocity factor:</p> <h5>{this.state.calcResult.criticalFlowVelocityFactor}</h5></div>
+                    <div><p>Critical flow velocity:</p> <h5>{this.state.calcResult.criticalFlowvelocity}m/s</h5></div>
                     <h2>Fouling Check</h2>
-                    <p>Total fouling resistance: {this.state.calcResult.totalFoolingResistance}</p>
-                    <p>Overall heat transfer coefficient for heat exchanger (fouled): {this.state.calcResult.overallHTCFHE}W/m².K</p>
-                    <p>Heat transfer surface area (fouled): {this.state.calcResult.fooledHTSA}m²</p>
-                    <p>Length of heat exchanger (fouled): {this.state.calcResult.LengthFooledHE}m</p>
-                    <p>Surface overdesign: {this.state.calcResult.oversurfaceDesign}</p>
-                    <p>Cleanliness factor: {this.state.calcResult.cleanlinessFactor}</p>
-                    <p>Tube-side pressure drop (fouled), ∆Pf: {this.state.calcResult.tubeSIdeFPD}Pa</p>
+                    <div><p>Total fouling resistance:</p> <h5>{this.state.calcResult.totalFoolingResistance}</h5></div>
+                    <div><p>Overall heat transfer coefficient for heat exchanger (fouled):</p> <h5>{this.state.calcResult.overallHTCFHE}W/m².K</h5></div>
+                    <div><p>Heat transfer surface area (fouled):</p> <h5>{this.state.calcResult.fooledHTSA}m²</h5></div>
+                    <div><p>Length of heat exchanger (fouled):</p> <h5>{this.state.calcResult.lengthFouledHE}m</h5></div>
+                    <div><p>Surface overdesign:</p> <h5>{this.state.calcResult.oversurfaceDesign}</h5></div>
+                    <div><p>Cleanliness factor:</p> <h5>{this.state.calcResult.cleanlinessFactor}</h5></div>
+                    <div><p>Tube-side pressure drop (fouled), ∆Pf:</p> <h5>{this.state.calcResult.tubeSIdeFPD}Pa</h5></div>
 
                 </div>
 
