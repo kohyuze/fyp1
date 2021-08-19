@@ -351,7 +351,7 @@ class RatingResult extends React.Component {
     render() {
         return (
             <div>
-                <h1>Results muthafaka</h1>
+                <h1>Rating Results</h1>
 
                 <div className='results-Container'>
                     <h2>Shell-side Thermal Analysis</h2>

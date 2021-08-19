@@ -107,7 +107,7 @@ class SizingResult extends React.Component {
     render() {
         return (
             <div>
-                <h1>Results muthafaka</h1>
+                <h1>Sizing Results</h1>
 
                 <div className='results-Container'>
                     <h2>Preliminary Analysis</h2>

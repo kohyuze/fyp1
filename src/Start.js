@@ -20,6 +20,11 @@ const Start = () => {
                         <h2 className="buttonText">Data</h2>
                     </Link>
                 </div>
+                <div className="navButtons" >
+                    <Link to={"/Interpolation"} className="navLink">
+                        <h2 className="buttonText">Interpolation</h2>
+                    </Link>
+                </div>
             </div>
         </div>
     );

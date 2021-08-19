@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Start from './Start';
 import RatingAnalysis from './RatingAnalysis';
 import SizingAnalysis from './SizingAnalysis';
+import Interpolation from './Interpolation';
 import Data from './Data';
 
 
@@ -23,6 +24,9 @@ function App() {
               </Route>
               <Route path="/Data">
                 <Data />
+              </Route>
+              <Route path="/Interpolation">
+                <Interpolation />
               </Route>
               {/* <Route path="*">
                 <NotFound />
