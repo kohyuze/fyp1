@@ -3,6 +3,7 @@ import Start from './Start';
 import RatingAnalysis from './RatingAnalysis';
 import SizingAnalysis from './SizingAnalysis';
 import Interpolation from './Interpolation';
+import Graphics from './Graphics';
 import Data from './Data';
 
 
@@ -27,6 +28,9 @@ function App() {
               </Route>
               <Route path="/Interpolation">
                 <Interpolation />
+              </Route>
+              <Route path="/Graphics">
+                <Graphics />
               </Route>
               {/* <Route path="*">
                 <NotFound />

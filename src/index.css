@@ -143,3 +143,22 @@ code {
 .results-Container h5{
   display:inline-block;
 }
+
+
+/* Graphics */
+.G_container{
+  background-color: pink;
+  display:inline-block;
+  padding: 10px;
+  /* margin-left: auto;
+  margin-right: auto; */
+}
+.head{
+  height: 150px;
+}
+.shell{
+  height: 150px;
+}
+.rear{
+  height: 150px;
+}
