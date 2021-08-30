@@ -8,6 +8,11 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+:root {
+  --primary-color: #e50914;
+  --background-color: lightgray;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -15,7 +20,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lightgray;
+  background-color: --background-color;
 }
 
 code {
@@ -146,19 +151,66 @@ code {
 
 
 /* Graphics */
-.G_container{
-  background-color: pink;
-  display:inline-block;
-  padding: 10px;
+.HX_container{
+  background-color: white;
+  display: flex;
+  padding-top: 1%;
+  /* width: 100%; */
+  justify-content: center;
   /* margin-left: auto;
   margin-right: auto; */
 }
 .head{
-  height: 150px;
+  width: 15%;
 }
 .shell{
-  height: 150px;
+  width: 30%;
 }
 .rear{
-  height: 150px;
+  /* height: 10%; */
+  width: 15%;
+}
+
+/* Tabs */
+.tabs {
+  background: var(--background-color);
+}
+
+.tabs .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.tabs p {
+  font-size: 1.2rem;
+}
+.tabs .container > div{
+  padding: 1rem 0;
+}
+.tabs .container > div:hover{
+  color: white;
+  cursor: pointer;
+}
+.tab-border{
+  border-bottom: red 4px solid;
+}
+
+/* Tab Content */
+.tab-content {
+  padding: 2rem 0;
+  background: white;
+  color :#000;
+}
+
+#tab-1-content,
+#tab-2-content,
+#tab-3-content {
+  display: none;
+}
+
+.show {
+  display: block !important;
 }
