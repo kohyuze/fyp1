@@ -32,14 +32,14 @@ const MySelect = ({ label, ...props }) => {
     );
   };
 
-class SizingForm extends React.Component {
+class WC_Form extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
             <div className='ratingContainer' >
-                <h1 className='pageHeader'>Sizing Analysis</h1>
+                <h1 className='pageHeader'>WaterCoolerSizing</h1>
                 {/* the error message sucks, pls fix in future */}
                 <Formik
                     initialValues={{ shellIT: '', shellOT: '', shellMFR: '' }}//dk why i dun need to put all the variables here
@@ -48,21 +48,21 @@ class SizingForm extends React.Component {
                             shellIT: Yup.number().required('Required'),
                             shellOT: Yup.number().required('Required'),
                             shellMFR: Yup.number().required('Required'),
-                            shellSHC: Yup.number().required('Required'),
+                            // shellSHC: Yup.number().required('Required'),
                             
                             tubeIT: Yup.number().required('Required'),
                             tubeOT: Yup.number().required('Required'),
                             tubeMFR: Yup.number().required('Required'),
-                            tubeSHC: Yup.number().required('Required'),
+                            // tubeSHC: Yup.number().required('Required'),
                             
-                            tubeOuterD: Yup.number().required('Required'),
-                            tubeLOconstant: Yup.number().required('Required'),
-                            numberTube: Yup.number().required('Required'),  
-                            centralBaffleSpacing: Yup.number().required('Required'),
-                            clearance: Yup.number().required('Required'),      
-                            numberPasses: Yup.number().required('Required'),
-                            overSurfaceDesign: Yup.number().required('Required'),
-                            overallHeatTCCHE: Yup.number().required('Required'),
+                            // tubeOuterD: Yup.number().required('Required'),
+                            // tubeLOconstant: Yup.number().required('Required'),
+                            // numberTube: Yup.number().required('Required'),  
+                            // centralBaffleSpacing: Yup.number().required('Required'),
+                            // clearance: Yup.number().required('Required'),      
+                            // numberPasses: Yup.number().required('Required'),
+                            // overSurfaceDesign: Yup.number().required('Required'),
+                            // overallHeatTCCHE: Yup.number().required('Required'),
                         })
                     }
                     onSubmit={(values, { setSubmitting }) => {
@@ -93,13 +93,13 @@ class SizingForm extends React.Component {
                             placeholder="Mass Flow Rate"
                             unit="kg/s"
                         />
-                        <MyTextInput
+                        {/* <MyTextInput
                             label="Specific Heat Capacity"
                             name="shellSHC"
                             type="text"
                             placeholder="Specific Heat Capacity"
                             unit="J/kg.K"
-                        />
+                        /> */}
                         <h2 className='categoryHeader'>Tube Side Fluid</h2>
                         <MyTextInput
                             label="Inlet Temperature" //text infront of box
@@ -122,14 +122,14 @@ class SizingForm extends React.Component {
                             placeholder="Mass Flow Rate"
                             unit="kg/s"
                         />
-                        <MyTextInput
+                        {/* <MyTextInput
                             label="Specific Heat Capacity"
                             name="tubeSHC"
                             type="text"
                             placeholder="Specific Heat Capacity"
                             unit="J/kg.K"
-                        />
-                        <h2 className='categoryHeader'>Constrains and Physical Dimensions</h2>
+                        /> */}
+                        {/* <h2 className='categoryHeader'>Constrains and Physical Dimensions</h2>
                         <MyTextInput
                             label="Tube Outer Diameter"
                             name="tubeOuterD"
@@ -170,31 +170,30 @@ class SizingForm extends React.Component {
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                        </MySelect>
-                        <h2 className='categoryHeader'>Fouling Attributes</h2> 
+                        </MySelect> */}
+                        {/* <h2 className='categoryHeader'>Fouling Attributes</h2> 
                         <MyTextInput
-                            label="Surface Overdesign"//******* */
+                            label="Surface Overdesign"
                             name="overSurfaceDesign"
                             type="text"
                             placeholder="Surface Overdesign"
                             unit="%"
                         />
                         <MyTextInput
-                            label="Overall Heat Transfer Coefficient(Clean)"//****** */
+                            label="Overall Heat Transfer Coefficient(Clean)"
                             name="overallHeatTCCHE"
                             type="text"
                             placeholder="Overall Heat Transfer Coefficient(Clean)"
                             unit="W/m².K"
-                        />
+                        /> */}
 
                         <button className='calculate' type="submit">Calculate</button>
                         {/* button is not done, dk what to do with it yet */}
                     </Form>
                 </Formik >
-
             </div >
         );
     }
 }
 
-export default SizingForm;
+export default WC_Form;

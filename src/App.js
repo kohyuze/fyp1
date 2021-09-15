@@ -5,6 +5,7 @@ import SizingAnalysis from './SizingAnalysis';
 import Interpolation from './Interpolation';
 import Graphics from './Graphics';
 import Data from './Data';
+import WaterCoolerSizing from './WaterCoolerSizing';
 
 
 //this function only redirects the pages according to the url
@@ -31,6 +32,9 @@ function App() {
               </Route>
               <Route path="/Graphics">
                 <Graphics />
+              </Route>
+              <Route path="/WaterCoolerSizing">
+                <WaterCoolerSizing />
               </Route>
               {/* <Route path="*">
                 <NotFound />

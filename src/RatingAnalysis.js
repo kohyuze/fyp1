@@ -5,7 +5,7 @@ import RatingResult from './RatingResult';
 
 
 
-class Rating_Form extends React.Component {
+class Rating_Analysis extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this); //this line here is rly needed
@@ -84,4 +84,4 @@ class Rating_Form extends React.Component {
     );
   }
 }
-export default Rating_Form;
+export default Rating_Analysis;

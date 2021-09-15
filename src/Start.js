@@ -30,6 +30,11 @@ const Start = () => {
                         <h2 className="buttonText">Graphics</h2>
                     </Link>
                 </div>
+                <div className="navButtons" >
+                    <Link to={"/WaterCoolerSizing"} className="navLink">
+                        <h2 className="buttonText">Water Cooler Sizing</h2>
+                    </Link>
+                </div>
             </div>
         </div>
     );

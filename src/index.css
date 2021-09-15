@@ -151,29 +151,93 @@ code {
 
 
 /* Graphics */
+.graphics_container{
+  height:40vh;
+  position: relative;
+}
+
+/* Tab 1 */
 .HX_container{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  position: absolute;
   background-color: white;
   display: flex;
-  padding-top: 1%;
-  /* width: 100%; */
-  justify-content: center;
-  /* margin-left: auto;
-  margin-right: auto; */
+  max-height:40vh;
+  max-width: 80vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%, -50%);
 }
 .head{
-  width: 15%;
+  width: 40%;
 }
 .shell{
-  width: 30%;
+  width: 80%;
 }
 .rear{
-  /* height: 10%; */
-  width: 15%;
+  width: 40%;
 }
+
+/* Tab 2 */
+.big_circle {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  /* background-color: lightblue; */
+  display: flex;
+  overflow: hidden;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: black solid;
+  border-radius: 50%;
+  justify-content: space-around;
+}
+.tube{
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background-color: lightblue;
+  border: black solid;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-20%, -400%);
+  z-index: 1;
+}
+.tube-row{
+  position: relative;
+  transform: translate(-10%, -30%);
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.HX_shell{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  position: absolute;
+  background-color: white;
+  display: flex;
+  max-height:40vh;
+  max-width: 80vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+}
+
+.hide{
+  display: none;
+}
+
 
 /* Tabs */
 .tabs {
+  position: relative;
   background: var(--background-color);
+  z-index: 10;
 }
 
 .tabs .container {
@@ -197,20 +261,17 @@ code {
 .tab-border{
   border-bottom: red 4px solid;
 }
-
 /* Tab Content */
 .tab-content {
   padding: 2rem 0;
   background: white;
   color :#000;
 }
-
 #tab-1-content,
 #tab-2-content,
-#tab-3-content {
+#tab-3-content{
   display: none;
 }
-
 .show {
   display: block !important;
 }
