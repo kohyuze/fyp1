@@ -48,7 +48,7 @@ class WC_Analysis extends React.Component {
     }
 
     //returns an array [density, specificHeat, kinematicVis, heatConductivity]
-    fetchProperties(inlet, outlet){
+    fetchProperties(inlet, outlet, callback){
         let averageTemp = (Number(inlet) + Number(outlet)) / 2;
         console.log(inlet, outlet, averageTemp);
 
@@ -96,41 +96,33 @@ class WC_Analysis extends React.Component {
                 )
                 const Properties = [density,specificHeat,kinematicVis,therConductivity];
                 console.log(Properties)
-                return (Properties)
+                callback(Properties);              
             }).catch(err => {
                 console.log(err);
-            })
-    }
-
+            })            
+        }
     
-    //to be passed into Form component, 
-    //to extract data from the form into the state here
     handleSubmit(value){
         for (var property in value) {
             value[property] = parseFloat(value[property]) //this loop converts all the data input into float so we can do arithmetic
         }
         this.setState(value);
         this.setState({ isSubmitted: true })
-        //upon submission, this will toggle and the ternary operator in render() will display
-        //the corresponding page
-        const shellProperties = this.fetchProperties(this.state.shellIT, this.state.shellOT)
-        const tubeProperties = this.fetchProperties(this.state.tubeIT, this.state.tubeOT)
-        //the code seems to stop running here. Prints point A before the tables from above this line,
-        //i think I need to do some async thing here, so to ensure that the arrays are loaded before 
-        //moving on.
-        console.log("point A")
-        this.setState({ ...this.state, shellD: shellProperties[0] })
-        this.setState({ ...this.state, shellSHC: shellProperties[1] })
-        this.setState({ ...this.state, shellKV: shellProperties[2] })
-        this.setState({ ...this.state, shellTC: shellProperties[3] })
-        console.log("point B")
-        this.setState({ ...this.state, tubeD: tubeProperties[0] })
-        this.setState({ ...this.state, tubeSHC: tubeProperties[1] })
-        this.setState({ ...this.state, tubeKV: tubeProperties[2] })
-        this.setState({ ...this.state, tubeTC: tubeProperties[3] })
-        
-        console.log("point C")
-        console.log(this.state)
+        //upon submission, this will toggle and the ternary operator in render() will display the corresponding page
+
+        //callback feature ensures the data is fetched before updating the state
+        this.fetchProperties(this.state.shellIT, this.state.shellOT, (shellProperties)=>{
+            this.setState({ ...this.state, shellD: shellProperties[0] })
+            this.setState({ ...this.state, shellSHC: shellProperties[1] })
+            this.setState({ ...this.state, shellKV: shellProperties[2] })
+            this.setState({ ...this.state, shellTC: shellProperties[3] })
+        })
+        this.fetchProperties(this.state.tubeIT, this.state.tubeOT, (tubeProperties)=>{
+            this.setState({ ...this.state, tubeD: tubeProperties[0] })
+            this.setState({ ...this.state, tubeSHC: tubeProperties[1] })
+            this.setState({ ...this.state, tubeKV: tubeProperties[2] })
+            this.setState({ ...this.state, tubeTC: tubeProperties[3] })
+        })
     }
 
 
