@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import A_1 from './Resources/A_1.png'
 import E from './Resources/E.png'
 import L_1 from './Resources/L_1B.png'
+import Canvas from './GraphicCanvas';
 
 class Graphics extends React.Component {
   constructor(props) {
@@ -18,14 +19,18 @@ class Graphics extends React.Component {
   }
 
   render() {
-    const tubes=[];
-    for (let i = 0; i < this.state.tubeNo; i++) {
-      tubes.push(<div className="tube"></div>)
-    }
+    // const tubes=[];
+    // for (let i = 0; i < this.state.tubeNo; i++) {
+    //   tubes.push(<div className="tube"></div>)
+    // }
     return (
       <div>
-        <div className="graphics_container">
-          {/* try see if you can do all this with a switch statement  */}
+        <Canvas/>
+
+
+
+        {/* <div className="graphics_container">
+           try see if you can do all this with a switch statement  
           <div className={`HX_container ${this.state.currentTab === "tab-1" ? "" : "hide"}`}>
             <img src={A_1} alt="A head" className='head' />
             <img src={E} alt="E Shell" className='shell' />
@@ -52,12 +57,7 @@ class Graphics extends React.Component {
           <div className={`HX_shell ${this.state.currentTab === "tab-3" ? "" : "hide"}`}>
             <img src={E} alt="E Shell" className='shell' />
           </div>
-        </div>
-
-
-
-
-
+        </div>*/}
 
         <section className="tabs">
           <div className="container">
@@ -95,7 +95,7 @@ class Graphics extends React.Component {
             </div>
           </div>
 
-        </section>
+        </section> 
 
 
       </div>

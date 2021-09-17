@@ -6,56 +6,89 @@ class WCResult extends React.Component {
         super(props);
         //this.handleChange = this.handleChange.bind(this);
         this.state = {
-            calcResult: {
-                logMeanTemDif: 0,
-                heatdutyHE: 0,
-                overallHTCFHE: 0,
-                fooledHTSA: 0,
-                tubePitch: 0,
-                shellInnerDiameter: 0,
-                tubeMetalSecAreaAllTube: 0,
-            }
+            logMeanTemDif: 0,
+            corMeanTemDif: 0,
+            heatdutyHE: 0,
+            overallHTCFHE: 0,
+            fooledHTSA: 0,
+            tubePitch: 0,
+            shellInnerDiameter: 0,
+            tubeMetalSecAreaAllTube: 0,
         };
     }
 
 
 
-    // calculate = () => {
-    //     //destructuring        
-    //     const {
-    //         // constants for shell
-    //         shellIT,
-    //         shellOT,
-    //         shellMFR,
-    //         shellSHC,
-    //         // Constant for tube
-    //         tubeIT,
-    //         tubeOT,
-    //         tubeMFR,
-    //         tubeSHC,
-    //         //Constraints and Physical Dimensions
-    //         tubeOuterD,
-    //         tubeLOconstant,
-    //         numberTube,
-    //         centralBaffleSpacing,
-    //         clearance,
-    //         numberPasses,
-    //         //Fouling Attributes
-    //         overSurfaceDesign,
-    //         overallHeatTCCHE,
-    //     } = this.props.formData;
-    //     // o is used to hold the calculated values before we setState at the end of the function
-    //     let o = {}
+    calculate = () => {
+        //destructuring        
+        const {
+            // constants for shell
+            shellIT,
+            shellOT,
+            shellMFR,
+            shellD,
+            shellSHC,
+            shellKV,
+            shellTC,
+            // Constant for tube
+            tubeIT,
+            tubeOT,
+            tubeMFR,
+            tubeD,
+            tubeSHC,
+            tubeKV,
+            tubeTC,
+            //Constraints and Physical Dimensions
+            tubeOuterD,
+            tubeLOconstant,
+            numberTube,
+            centralBaffleSpacing,
+            clearance,
+            numberPasses,
+            //Fouling Attributes
+            overSurfaceDesign,
+            overallHeatTCCHE,
+        } = this.props;
+        // o is used to hold the calculated values before we setState at the end of the function
+        let o = {}
 
-    //     const difference = (a, b) => {
-    //         return Math.abs(a - b);
-    //     }
+        const difference = (a, b) => {
+            return Math.abs(a - b);
+        }
 
+        
+        
+        //Determining the heat duty
+        const Q = (shellMFR) * shellSHC * (shellIT - shellOT)
+        o.heatdutyHE = Q.toFixed(4)
 
-    //     const LMTD = (difference(shellIT, shellOT) - difference(tubeIT, tubeOT)) / (Math.log(difference(shellIT, shellOT) / difference(tubeIT, tubeOT)))
-    //     o.logMeanTemDif = LMTD.toFixed(4)
-    //     const Q = (shellMFR) * shellSHC * (shellIT - shellOT)
-    //     o.heatdutyHE = Q.toFixed(4)
+        // LMTD
+        const LMTD = (difference(shellIT, shellOT) - difference(tubeIT, tubeOT)) / (Math.log(difference(shellIT, shellOT) / difference(tubeIT, tubeOT)))
+        o.logMeanTemDif = LMTD.toFixed(4)
+        // Temperature efficiency factor F
+        const N = 1 // number of heat exchangers in series
+        const P = (tubeOT-tubeIT) / (shellIT-tubeIT);
+        const R = (shellIT-shellOT) / (tubeOT-tubeIT);
+        const temp = (R*P-1)/(P-1)
+        const Pz = (1-temp**(1/N))/(R-temp**(1/N))
+        const corFactor = (Math.pow(R**2+1, 0.5)/(R-1)) * (Math.log((1-Pz)/(1-R*Pz))/(Math.log(((2/Pz)-1-R+Math.pow(R**2+1, 0.5)))/(Math.log((2/Pz)-1-R-Math.pow(R**2+1, 0.5)))))
+        o.F = corFactor
+        // CMTD
+        o.CMTD = o.corFactor * LMTD;
+
+        // Estimated overall heat transfer coefficient
+        const U = 716 //use this for now
+
+        //Required heat exchanger area
+        o.HXarea = Q/(U*o.CMTD);
+        
+        console.log(o)
+        //save everything
+        //this is wrong. all the values in o is also NaN
+        this.setState({o})
+    }
+
+    
 
     //     const Uf = overallHeatTCCHE / ((overSurfaceDesign / 100) + 1)
     //     o.overallHTCFHE = Uf.toFixed(4)
@@ -100,9 +133,9 @@ class WCResult extends React.Component {
     //     this.setState({ calcResult: o })
     // }
 
-    // componentDidMount() {
-    //     this.calculate();
-    // }
+    componentDidMount() {
+        this.calculate();
+    }
 
     render() {
         return (
@@ -124,8 +157,8 @@ class WCResult extends React.Component {
                     <div><p>Total cross-sectional area for all tubes: </p> <h5>{this.state.calcResult.tubeMetalSecAreaAllTube}m²</h5></div>
                 </div>
 
-                <button className='calculate' onClick={this.props.handleNewCalc}>New Calculation</button>
-                <button onClick={() => console.log(this.state)}>log state 2</button> */}
+                <button className='calculate' onClick={this.props.handleNewCalc}>New Calculation</button>*/}
+                <button onClick={() => console.log(this.state)}>log state 2</button> 
             </div>
         )
     }

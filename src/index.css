@@ -275,3 +275,9 @@ code {
 .show {
   display: block !important;
 }
+
+
+/*------------ Canvas -----------*/
+canvas{
+  background: red;
+}
