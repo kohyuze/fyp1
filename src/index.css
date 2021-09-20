@@ -160,7 +160,7 @@ code {
 .HX_container{
   /* padding-top: 1%; */
   /* padding-bottom: 1%; */
-  position: absolute;
+  /* position: absolute; */
   /* background-color: white;
   display: flex;
   max-height:40vh;
@@ -289,12 +289,12 @@ code {
 
 /*------------ Canvas -----------*/
 #Tab1 canvas{
-  background-color: grey;
+  position: relative;
   display:block;
   background: white;
-  display: block;
   height: 30vw; 
-  width: 100vw;
+  width: 70vw;
+  margin:auto; 
 }
 
 #Tab2 canvas{

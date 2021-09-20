@@ -9,7 +9,7 @@ class Graphics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: "tab-2", //default tab is tab1
+      currentTab: "tab-1", //default tab is tab1
     };
   }
 

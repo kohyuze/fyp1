@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 const Tab2 = () => {
     const tubeNo = 500
-    const tubeDiameter = 0.01
+    const tubeDiameter = 0.03
     const shellDiameter = 1.3
     const tubes = [];
     const tubeConfig = "square" //triangular, rotated square
