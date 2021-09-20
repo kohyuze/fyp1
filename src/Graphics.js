@@ -2,14 +2,14 @@ import React, { useRef } from 'react';
 import A_1 from './Resources/A_1.png'
 import E from './Resources/E.png'
 import L_1 from './Resources/L_1B.png'
-import Canvas from './GraphicCanvas';
+import Tab1 from './GraphicTab1';
+import Tab2 from './GraphicTab2';
 
 class Graphics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: "tab-1", //default tab is tab1
-      tubeNo: 10,
+      currentTab: "tab-2", //default tab is tab1
     };
   }
 
@@ -19,45 +19,22 @@ class Graphics extends React.Component {
   }
 
   render() {
-    // const tubes=[];
-    // for (let i = 0; i < this.state.tubeNo; i++) {
-    //   tubes.push(<div className="tube"></div>)
-    // }
     return (
       <div>
-        <Canvas/>
-
-
-
-        {/* <div className="graphics_container">
-           try see if you can do all this with a switch statement  
+        <div className="graphics_container">
+           {/* try see if you can do all this with a switch statement   */}
           <div className={`HX_container ${this.state.currentTab === "tab-1" ? "" : "hide"}`}>
-            <img src={A_1} alt="A head" className='head' />
-            <img src={E} alt="E Shell" className='shell' />
-            <img src={L_1} alt="L Rear" className='rear' />
+            <Tab1/>
           </div>
 
           <div className={`cross-section ${this.state.currentTab === "tab-2" ? "" : "hide"}`}>
-            <div className="big_circle">
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-              <div className="tube-row">{tubes}</div>
-            </div>
+            <Tab2/>
           </div>
 
           <div className={`HX_shell ${this.state.currentTab === "tab-3" ? "" : "hide"}`}>
             <img src={E} alt="E Shell" className='shell' />
           </div>
-        </div>*/}
+        </div>
 
         <section className="tabs">
           <div className="container">

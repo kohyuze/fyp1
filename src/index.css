@@ -152,41 +152,32 @@ code {
 
 /* Graphics */
 .graphics_container{
-  height:40vh;
+  height:30vw;
   position: relative;
 }
 
 /* Tab 1 */
 .HX_container{
-  padding-top: 1%;
-  padding-bottom: 1%;
+  /* padding-top: 1%; */
+  /* padding-bottom: 1%; */
   position: absolute;
-  background-color: white;
+  /* background-color: white;
   display: flex;
   max-height:40vh;
   max-width: 80vh;
   top: 50%;
-  left: 50%;
-  transform: translate(-80%, -50%);
-}
-.head{
-  width: 40%;
-}
-.shell{
-  width: 80%;
-}
-.rear{
-  width: 40%;
+  left: 50%; */
+  /* transform: translate(-80%, -50%); */
 }
 
 /* Tab 2 */
 .big_circle {
-  width: 200px;
-  height: 200px;
+  width: 20vw;
+  height: 20vw;
   position: absolute;
   /* background-color: lightblue; */
   display: flex;
-  overflow: hidden;
+  overflow: show;
   z-index: 0;
   top: 50%;
   left: 50%;
@@ -197,8 +188,8 @@ code {
 }
 .tube{
   position: relative;
-  width: 10px;
-  height: 10px;
+  /* width: 10px;
+  height: 10px; */
   background-color: lightblue;
   border: black solid;
   border-radius: 50%;
@@ -213,7 +204,25 @@ code {
   display:flex;
   flex-direction: column;
   justify-content: space-around;
+  /* display: none */
 }
+.shellDiameter{
+  width: 1px;
+  height:20vw;
+  background-color: grey;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 65%;
+  font-size: small;
+  font-style: oblique;
+  white-space: nowrap;
+}
+/* .shellDiameter p{
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 20%;
+} */
 
 .HX_shell{
   padding-top: 1%;
@@ -226,6 +235,7 @@ code {
   top: 50%;
   left: 50%;
   transform: translate(-40%, -50%);
+  
 }
 
 .hide{
@@ -249,7 +259,7 @@ code {
   text-align: center;
 }
 .tabs p {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .tabs .container > div{
   padding: 1rem 0;
@@ -278,6 +288,33 @@ code {
 
 
 /*------------ Canvas -----------*/
-canvas{
-  background: red;
+#Tab1 canvas{
+  background-color: grey;
+  display:block;
+  background: white;
+  display: block;
+  height: 30vw; 
+  width: 100vw;
+}
+
+#Tab2 canvas{
+  position: relative;
+  background: white;
+  display: block;
+  height: 30vw; 
+  width: 60vw;
+  margin:auto; 
+}
+
+.head{
+  /* width: 40%; */
+  display: none;
+}
+.shell{
+  /* width: 80%; */
+  display: none;
+}
+.rear{
+  /* width: 40%; */
+  display: none;
 }
